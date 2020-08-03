@@ -12,10 +12,10 @@ client = pymongo.MongoClient(conn)
 # connect to mongo db and collection
 db = client.mars_db
 mars = db.mars_collection
+mars.insert_one(scrape_mars.scrape())
 
 @app.route("/")
-def home():   
-    
+def home():      
     mars_data = mars.find_one()
     return render_template("index.html", mars_data = mars_data)
 
